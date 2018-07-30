@@ -11,10 +11,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Adaboost 算法分析">
 <meta property="og:url" content="http://yoursite.com/2018/07/29/Adaboost-算法分析/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Thoughts">
 <meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T02:49:44.143Z">
+<meta property="og:updated_time" content="2018-07-30T02:52:50.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Adaboost 算法分析">
 <meta name="twitter:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾">
@@ -73,8 +73,6 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2018/07/30/Untitled/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
         
         <li><a class="icon" href="/2018/07/29/hello-world/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -122,7 +120,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Hexo</span>
+        <span itemprop="name">Thoughts</span>
       </span>
       
     <div class="postdate">
@@ -152,6 +150,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 <h1 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h1><p>网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾里，所以想写下这篇博客，里面有一些自己的思考，锻炼一下自己的耐性和写作能力。</p>
 <p>我认为，一个成熟的机器学习算法，它的每个方面从数据集的选择，损失函数，优化等各方面都是有很深的学问的，所以我们在学习的时候万不能认为我们已经掌握了某个算法，其实深究下去，机器学习算法盘根错节，知识点相互关联，除非你是数学大牛，我认为轻易说出完全掌握这种话的同学相当不自量力。</p>
+<p>这是我的第一篇博客，写的当然没有网上的好，不过里面有我自己的思考，这篇博客还有会有改进的。</p>
 <h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>Adaboost，全称是Adaptive Boosting,是Boosting算法家族里面比较典型的一种。所谓Boosting,用一句话来说，就是“三个臭皮匠，顶个诸葛亮”。这是什么意思呢，我们以分类器(Classifier)和二分类问题为例，如果我们获得了一些弱分类器，此处弱分类的的定义是，相较于随机的分类器，准确率只高出一点，我们能够利用这些弱分类器，组成强分类器。</p>
 <p>以二分类问题为例，有数据集${(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}$，$y_i∈{+1,-1}$,Adaboost的强分类器的定义如下:$$H(x)=a_1h_1(x)+a_2h_2(x)+…+a_mh_m(x)\ a_i&gt;0,i=1,2,..,m$$<br>上式中，$h_i(x)​$ 为 第$i​$个分类器，以二分类为例，取值范围为${+1,-1}​$ ，$a_i​$为对应的权重，可知，最终的强分类器$H(x)​$ 是各个弱分类器的线性叠加。更准确的讲，最终的强分类器为:$$sign(H(x))​$$</p>
 <h1 id="相关公式的推导"><a href="#相关公式的推导" class="headerlink" title="相关公式的推导"></a>相关公式的推导</h1><p>本小节以二分类为例，介绍相关公式的推导。求解这个问题就是求解线性组合权重$a_i$,为了求解$a_i​$ ,首先介绍Adaboost的损失函数：$$L(a,h)=\sum_{i}^{N}exp(-y_iH(x_i))​$$至于为何选择指数作为损失函数，本文不做解释，实际上损失函数的选择是十分讲究的，涉及到很多方面，详细的分析可以参见文后的参考链接。但从表达式可以看出，如果分类正确的数量越多，损失越小，因此是合理的。损失函数展开如下：$$\begin{eqnarray}L(a,h) &amp;=&amp; \sum_{i}^{N}exp(-y_iH(x_i) \\\ &amp;=&amp; \sum_iexp(-y_iH_{m-1}(x))exp(-y_ia_mh_m(x)) \end{eqnarray}​$$ 令$\overline{w_{mi}}=exp(-y_iH_{m-1}(x_i))​$,则$$\begin{eqnarray}L(a,h) &amp;=&amp; \sum_{i}\overline{w_{mi}}exp(-y_{i}a_mh_m(x)) \nonumber  \\\ &amp;=&amp;\sum_{y_i=h_m(x_i)}\overline{w_{mi}}exp(-a_m)+\sum_{y_i\ne{h_m(x_i)}}\overline{w_{mi}}exp(a_m)\\\ &amp;=&amp; (e^{a_m}-e^{-a_{m}})\sum_{y_i \ne h_m(x_i)}\overline{w_{mi}}+e^{-a_m}\sum_{i}\overline{w_{mi}}\end{eqnarray} ​$$ 实际上，这个$\overline{w_{mi}}$是可以进行递推的，递推的结果为$$\overline{w_{mi}}=\overline{w_{m-1i}}exp(-y_ia_{m-1}h_{m-1i}(x_i))$$然后我们对$a_m​$求导，令导数为零，有如下结果$$a_m={1\over2}ln{1-e_m\over e_m}​$$其中，$e_m​=\frac{\sum_i\overline{w_mi}I(y_i\ne h_m(x_i))} {\sum_i\overline w_{mi}}$,关于这个量，仔细思考，发现是第$m$个分类器的误差率乘上对应的误差权重$\overline{w_{mi}}$，到现在为止，似乎我们已经把弱分类的线性权重给求出来了，还有很重要的一点被我们忽视了，我们在求导的时候，默认将$\overline{w_{mi}}$固定了，也就是说，我们默认将第$m$个分类器之前的所有分类器都安排的明明白白的，前$m-1$个分类器的权重都是最优的，这个时候我们求解第$m$个分类器的权重。</p>
@@ -169,7 +168,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>网上例子很多，比如<a href="https://blog.csdn.net/guyuealian/article/details/70995333" target="_blank" rel="noopener">这个</a></p>
 <h1 id="Talk-is-cheap-show-me-your-code"><a href="#Talk-is-cheap-show-me-your-code" class="headerlink" title="Talk is cheap,show me your code"></a>Talk is cheap,show me your code</h1><p>未完待续</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
-<li><a href="http://rob.schapire.net/papers/explaining-adaboost.pdf" target="_blank" rel="noopener">Adaboost Explained</a></li>
+<li><a href="http://rob.schapire.net/papers/explaining-adaboost.pdf" target="_blank" rel="noopener">Adaboost Explained</a> 这篇文章很值得一读，它解释了为和Adaboost是一个非常优秀的算法</li>
 <li><a href="https://blog.csdn.net/guyuealian/article/details/70995333" target="_blank" rel="noopener">https://blog.csdn.net/guyuealian/article/details/70995333</a></li>
 </ol>
 
