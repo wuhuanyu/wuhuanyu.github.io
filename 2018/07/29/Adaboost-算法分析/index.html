@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Thoughts">
 <meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T03:16:55.622Z">
+<meta property="og:updated_time" content="2018-07-31T01:48:35.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Adaboost 算法分析">
 <meta name="twitter:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾">
@@ -99,7 +99,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Preface"><span class="toc-number">1.</span> <span class="toc-text">Preface</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#背景介绍"><span class="toc-number">2.</span> <span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相关公式的推导"><span class="toc-number">3.</span> <span class="toc-text">相关公式的推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法"><span class="toc-number">4.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#例子"><span class="toc-number">5.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Talk-is-cheap-show-me-your-code"><span class="toc-number">6.</span> <span class="toc-text">Talk is cheap,show me your code</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">7.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Preface"><span class="toc-number">1.</span> <span class="toc-text">Preface</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#背景介绍"><span class="toc-number">2.</span> <span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相关公式的推导"><span class="toc-number">3.</span> <span class="toc-text">相关公式的推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法"><span class="toc-number">4.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Intuition"><span class="toc-number">5.</span> <span class="toc-text">Intuition</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#例子"><span class="toc-number">6.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Talk-is-cheap-show-me-your-code"><span class="toc-number">7.</span> <span class="toc-text">Talk is cheap,show me your code</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后记"><span class="toc-number">8.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -163,9 +163,13 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <li>重复3-4直到算出所有的$a_j$</li>
 <li>线性组合弱分类器，进而得到强分类器</li>
 </ol>
-<p>仔细思考这个算法，抛开一些修改如归一化不谈，这个算法中涉及到了两个权重，弱分类器的线性组合权重，和误差权重。线性组合权重表明，如果这个弱分类器的误差越小，该分类器在最终的强分类器中的话语权越大；误差权重表明，如果某些数据集没有被正确分类，那么它们在下一轮训练中的比重上升，即重点关照这些数据集</p>
+<h1 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h1><p>笔者有个倾向，在查阅资料的时候，特别喜欢看作者对算法的直觉理解，直觉不是幻觉，是一种“好像是这么回事”的感觉，这是建立在数学分析之上的，很可惜我发现英文资料里对直觉的分析比较多，中文资料很少，显得很“学院派”，上来就给读者分析数学，显得不有趣。那么我们来直觉上理解这个算法。</p>
+<p>这个算法到底在干什么？假设我们刚进入了第$j$轮迭代，手上有了更新过的$\overline{w_{ji}}$,这个表示在第$j-1$轮迭代中分类器$H_{j-1}$对第$i$组数据犯错误的严重程度，如果这个数据在第$j-1$中被分类错误，那么第$j$轮中的权重会上升，（算法一开始的权重相等，$1 \over N$）这体现在本轮中的损失函数中，这个时候，求出$a_j$,这能够使得本轮对上轮的错误做出部分修正，然后进入第$j+1$轮。</p>
+<p>假设我们完成了所有迭代，获得了$a_j$,意味着我们对所有分类错误的数据尽力完成了修正。也就是说，最后得到的强分类器中的每一个弱分类器都在修正前面弱分类器所犯下的错误。</p>
+<p>后面的分类器尽力弥补前面分类器所犯错误的思想，是Boosting算法家族的共同点，比如将要介绍的Gradient Boosting算法。</p>
 <h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>网上例子很多，比如<a href="https://blog.csdn.net/guyuealian/article/details/70995333" target="_blank" rel="noopener">这个</a></p>
 <h1 id="Talk-is-cheap-show-me-your-code"><a href="#Talk-is-cheap-show-me-your-code" class="headerlink" title="Talk is cheap,show me your code"></a>Talk is cheap,show me your code</h1><p>未完待续</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>这个算法的整理是按照我的理解进行的，难免有疏漏，公式推导显得粗糙，我也意识到了这一点，才疏学浅，将来会开放评论，欢迎大家斧正！</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li><a href="http://rob.schapire.net/papers/explaining-adaboost.pdf" target="_blank" rel="noopener">Adaboost Explained</a> 这篇论文很值得一读，从算法的简单性和对过拟合的分析出发，它解释了为何Adaboost是一个非常优秀的算法。</li>
 <li><a href="https://blog.csdn.net/guyuealian/article/details/70995333" target="_blank" rel="noopener">https://blog.csdn.net/guyuealian/article/details/70995333</a></li>
@@ -196,7 +200,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Preface"><span class="toc-number">1.</span> <span class="toc-text">Preface</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#背景介绍"><span class="toc-number">2.</span> <span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相关公式的推导"><span class="toc-number">3.</span> <span class="toc-text">相关公式的推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法"><span class="toc-number">4.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#例子"><span class="toc-number">5.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Talk-is-cheap-show-me-your-code"><span class="toc-number">6.</span> <span class="toc-text">Talk is cheap,show me your code</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">7.</span> <span class="toc-text">参考资料</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Preface"><span class="toc-number">1.</span> <span class="toc-text">Preface</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#背景介绍"><span class="toc-number">2.</span> <span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相关公式的推导"><span class="toc-number">3.</span> <span class="toc-text">相关公式的推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法"><span class="toc-number">4.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Intuition"><span class="toc-number">5.</span> <span class="toc-text">Intuition</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#例子"><span class="toc-number">6.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Talk-is-cheap-show-me-your-code"><span class="toc-number">7.</span> <span class="toc-text">Talk is cheap,show me your code</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后记"><span class="toc-number">8.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
