@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾">
+<meta name="description" content="Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾里，所以想写下这篇博客，里面有一些自己的思考，锻炼一下自己的耐性和写作能力。 我认为，一个成熟的机器学习算法，它的每个方面从数据集的选择，损失函数，优化等各方面">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Adaboost 算法分析">
 <meta property="og:url" content="http://yoursite.com/2018/07/29/Adaboost-算法分析/index.html">
 <meta property="og:site_name" content="Thoughts">
-<meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾">
+<meta property="og:description" content="Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾里，所以想写下这篇博客，里面有一些自己的思考，锻炼一下自己的耐性和写作能力。 我认为，一个成熟的机器学习算法，它的每个方面从数据集的选择，损失函数，优化等各方面">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T01:48:35.504Z">
+<meta property="og:updated_time" content="2018-07-31T03:00:09.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Adaboost 算法分析">
-<meta name="twitter:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾">
+<meta name="twitter:description" content="Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾里，所以想写下这篇博客，里面有一些自己的思考，锻炼一下自己的耐性和写作能力。 我认为，一个成熟的机器学习算法，它的每个方面从数据集的选择，损失函数，优化等各方面">
 
 
 
@@ -320,15 +320,7 @@
       
 
       
-        <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-<h1 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h1><p>网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾里，所以想写下这篇博客，里面有一些自己的思考，锻炼一下自己的耐性和写作能力。</p>
+        <h1 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h1><p>网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾里，所以想写下这篇博客，里面有一些自己的思考，锻炼一下自己的耐性和写作能力。</p>
 <p>我认为，一个成熟的机器学习算法，它的每个方面从数据集的选择，损失函数，优化等各方面都是有很深的学问的，所以我们在学习的时候万不能认为我们已经掌握了某个算法，其实深究下去，机器学习算法盘根错节，知识点相互关联，除非你是数学大牛，我认为轻易说出完全掌握这种话的同学相当不自量力。</p>
 <p>和其他资料不同的是，我尝试着从最基本的Adaboost的定义出发，进而明确需要推导的量，最后根据公式推导，给出算法流程。我认为，这种思维模式有助于同学们思考一个算法需要考虑到那些问题。这是我的第一篇博客，写的当然没有网上的好，不过里面有我自己的思考，这篇博客还有会有改进的。</p>
 <h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>Adaboost，全称是Adaptive Boosting,是Boosting算法家族里面比较典型的一种。所谓Boosting,用一句话来说，就是“三个臭皮匠，顶个诸葛亮”。这是什么意思呢，我们以分类器(Classifier)和二分类问题为例，如果我们获得了一些弱分类器，此处弱分类的的定义是，相较于随机的分类器，准确率只高出一点，我们能够利用这些弱分类器，组成强分类器。</p>
