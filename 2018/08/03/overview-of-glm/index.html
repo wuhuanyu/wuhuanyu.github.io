@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="title: Overview of GLMdate: 2018-08-03 16:51:25mathjax: truetags:   ML GLM   Note本文大部分总结自http://cs229.stanford.edu/notes/cs229-notes1.pdf Preface大家一开始接触回归问题的时候一定遇到过简单线性回归，Logistic Regression和Softmax问">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Thoughts">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/overview-of-glm/index.html">
 <meta property="og:site_name" content="Thoughts">
+<meta property="og:description" content="title: Overview of GLMdate: 2018-08-03 16:51:25mathjax: truetags:   ML GLM   Note本文大部分总结自http://cs229.stanford.edu/notes/cs229-notes1.pdf Preface大家一开始接触回归问题的时候一定遇到过简单线性回归，Logistic Regression和Softmax问">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-03T12:15:07.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thoughts">
+<meta name="twitter:description" content="title: Overview of GLMdate: 2018-08-03 16:51:25mathjax: truetags:   ML GLM   Note本文大部分总结自http://cs229.stanford.edu/notes/cs229-notes1.pdf Preface大家一开始接触回归问题的时候一定遇到过简单线性回归，Logistic Regression和Softmax问">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/03/overview-of-glm/"/>
 
 
 
 
 
-  <title>Thoughts</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> | Thoughts</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -256,9 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/03/overview-of-glm/" itemprop="url">Untitled</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -318,26 +319,35 @@
       
 
       
-        
-          
-          
-title: Overview of GLMdate: 2018-08-03 16:51:25mathjax: truetags: 
+        <hr>
+<p>title: Overview of GLM<br>date: 2018-08-03 16:51:25<br>mathjax: true<br>tags: </p>
+<ul>
+<li>ML</li>
+<li>GLM</li>
+</ul>
+<hr>
+<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>本文大部分总结自<a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="noopener">http://cs229.stanford.edu/notes/cs229-notes1.pdf</a></p>
+<h1 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h1><p>大家一开始接触回归问题的时候一定遇到过简单线性回归，Logistic Regression和Softmax问题，我在学习后两种回归问题的时候对方程的形式感觉很奇怪。比如：Logsitic Regression的方程(省略偏置项)如下：$$P(y=1|x)={1\over{1+e^{-w^Tx}}}$$$$P(y=0|x)={e^{-w^Tx}\over{1+e^{-w^Tx}}}$$为什么会是这种形式？这涉及到通用线性模型的概念(Generalized Linear Model,GLM),从GLM可以回答这个问题。</p>
+<h1 id="GLM及其特化"><a href="#GLM及其特化" class="headerlink" title="GLM及其特化"></a>GLM及其特化</h1><p>GLM模型是建立在指数函数家族之上的,指数家族指的是下面这种形式的函数：$$P(y;\eta)=b(y)e^{\eta^TT(y)-a(\eta)}$$其中，各参数含义如下(这部分我不是特别清楚，从参考文献直接搬过来)：</p>
+<ol>
+<li>$\eta$为自然参数(Natural Parameter)</li>
+<li>$T(y)$为sufficient statistic(下文考虑的分布通常为$T(y)=y$)</li>
+<li>$a(\eta)$为归一化参量，用来使得算出的概率总和为1</li>
+</ol>
+<p>GLM做出如下假设：</p>
+<ol>
+<li>$y|x;\theta$ 服从某指数家族分布</li>
+<li>讨论的目标为$E(y|x)$</li>
+<li>$\eta$和$x$满足线性关系$\eta=w^Tx$</li>
+</ol>
+<p>简单线性回归，Logistic Regression 和Softmax问题都能通过方程变形变为GLM</p>
+<h2 id="1-简单线性回归（以下简称线性回归，高斯分布）"><a href="#1-简单线性回归（以下简称线性回归，高斯分布）" class="headerlink" title="1. 简单线性回归（以下简称线性回归，高斯分布）"></a>1. 简单线性回归（以下简称线性回归，高斯分布）</h2><p>我们在处理线性回归问题的时候，通常如下建模：$$y=w^Tx+\epsilon$$其中$\epsilon$为误差项，一般认为$\epsilon\sim N(0,\delta^2)$,因为$\delta$的取值不影响讨论，不妨认为$\delta=1$,因此$y\sim N(w^Tx,1)$,因此$$\begin{eqnarray} p(y|x) &amp;=&amp; {1\over \sqrt{2\pi}}exp{(y-\mu)^2\over 2} \\\  &amp;=&amp; {1\over \sqrt{2\pi}} exp(-{y^2\over2})exp(\mu y-{\mu^2\over2})\end{eqnarray}$$所以$$\eta=\mu=w^Tx$$$$T(y)=y$$$$a(\eta)={\mu^2/2}$$ $$b(y)={1\over \sqrt{2\pi}}exp(-{y^2\over2})$$</p>
+<h2 id="2-Logistic-Regression-伯努利分布"><a href="#2-Logistic-Regression-伯努利分布" class="headerlink" title="2. Logistic Regression(伯努利分布)"></a>2. Logistic Regression(伯努利分布)</h2><p>通过一定的变形，同样可以将Losgistic Regression 变形为指数分布，不详述。假设$p(y=1;\phi)=\phi$，结果如下<br>$$\eta=ln({\phi\over{1-\phi}})=&gt;\phi={1\over{1+e^{-\eta}}}$$ $$T(y)=y$$ $$a(\eta)=ln(1+e^\eta)$$ $$b(y)=1$$ 这个时候我们就发现，由于上述GLM的假设，自然得出$$P(y=1|x)={1\over{1+e^{-w^Tx}}}$$$$P(y=0|x)={e^{-w^Tx}\over{1+e^{-w^Tx}}}$$<br>这是相当奇妙的，我一开始接触到这个结论的时候很困惑，毕竟从伯努利分布得到Logistic Regression 这种形式还是有一定的跨度的，原来过程就藏在GLM模型里！</p>
+<h2 id="3-Softmax（多项分布）"><a href="#3-Softmax（多项分布）" class="headerlink" title="3. Softmax（多项分布）"></a>3. Softmax（多项分布）</h2><p>其实仔细思考，伯努利分布其实是多项分布的特化，Logistic Regression 和Softmax的形式也有相似之处。由多项分布变形成GLM并不复杂，但是要借助一个小trick，即one hot编码，为了节省我的工作量，我就不写啦。详情见<a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="noopener">26</a></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ol>
+<li><a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="noopener">http://cs229.stanford.edu/notes/cs229-notes1.pdf</a></li>
+</ol>
 
-ML
-GLM
-
-
-Note本文大部分总结自http://cs229.stanford.edu/notes/cs229-notes1.pdf
-Preface大家一开
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/03/overview-of-glm/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -354,151 +364,28 @@ Preface大家一开
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Some-tips-on-GradientBoosting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stack0149">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Thoughts">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/31/Some-tips-on-GradientBoosting/" itemprop="url">Some tips on GradientBoosting</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T13:05:48+08:00">
-                2018-07-31
-              </time>
+              <a href="/2018/07/31/Some-tips-on-GradientBoosting/" rel="next" title="Some tips on GradientBoosting">
+                <i class="fa fa-chevron-left"></i> Some tips on GradientBoosting
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/31/Some-tips-on-GradientBoosting/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/31/Some-tips-on-GradientBoosting/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          参考
-https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
-Gradient Descent vs Residuals
-Why does Gradien
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/31/Some-tips-on-GradientBoosting/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -508,146 +395,11 @@ Why does Gradien
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/29/Adaboost-算法分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stack0149">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Thoughts">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/29/Adaboost-算法分析/" itemprop="url">Adaboost 算法分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-29T15:46:39+08:00">
-                2018-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/29/Adaboost-算法分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/29/Adaboost-算法分析/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾里，所以想写下这篇博客，里面有一些自己的思考，锻炼一下自己的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/29/Adaboost-算法分析/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -655,6 +407,13 @@ Why does Gradien
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -675,8 +434,17 @@ Why does Gradien
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -737,6 +505,22 @@ Why does Gradien
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Note"><span class="nav-number">1.</span> <span class="nav-text">Note</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Preface"><span class="nav-number">2.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GLM及其特化"><span class="nav-number">3.</span> <span class="nav-text">GLM及其特化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简单线性回归（以下简称线性回归，高斯分布）"><span class="nav-number">3.1.</span> <span class="nav-text">1. 简单线性回归（以下简称线性回归，高斯分布）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Logistic-Regression-伯努利分布"><span class="nav-number">3.2.</span> <span class="nav-text">2. Logistic Regression(伯努利分布)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Softmax（多项分布）"><span class="nav-number">3.3.</span> <span class="nav-text">3. Softmax（多项分布）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -870,6 +654,10 @@ Why does Gradien
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -929,46 +717,7 @@ Why does Gradien
         guest_info:guest,
         pageSize:'10' || 10,
     });
-  </script>
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -986,6 +735,25 @@ Why does Gradien
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
   
 
 
