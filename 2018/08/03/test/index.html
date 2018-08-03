@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ML,GLM," />
+  <meta name="keywords" content="ML," />
 
 
 
@@ -80,16 +80,16 @@
 
 
 <meta name="description" content="Note本文大部分总结自http://cs229.stanford.edu/notes/cs229-notes1.pdf Preface大家一开始接触回归问题的时候一定遇到过简单线性回归，Logistic Regression和Softmax问题，我在学习后两种回归问题的时候对方程的形式感觉很奇怪。比如：Logsitic Regression的方程(省略偏置项)如下：$$P(y=1|x)={1\o">
-<meta name="keywords" content="ML,GLM">
+<meta name="keywords" content="ML">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Overview of GLM">
-<meta property="og:url" content="http://yoursite.com/2018/08/03/Overview-of-GLM/index.html">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/test/index.html">
 <meta property="og:site_name" content="Thoughts">
 <meta property="og:description" content="Note本文大部分总结自http://cs229.stanford.edu/notes/cs229-notes1.pdf Preface大家一开始接触回归问题的时候一定遇到过简单线性回归，Logistic Regression和Softmax问题，我在学习后两种回归问题的时候对方程的形式感觉很奇怪。比如：Logsitic Regression的方程(省略偏置项)如下：$$P(y=1|x)={1\o">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-03T12:32:13.879Z">
+<meta property="og:updated_time" content="2018-08-03T12:28:38.673Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Overview of GLM">
+<meta name="twitter:title" content="test">
 <meta name="twitter:description" content="Note本文大部分总结自http://cs229.stanford.edu/notes/cs229-notes1.pdf Preface大家一开始接触回归问题的时候一定遇到过简单线性回归，Logistic Regression和Softmax问题，我在学习后两种回归问题的时候对方程的形式感觉很奇怪。比如：Logsitic Regression的方程(省略偏置项)如下：$$P(y=1|x)={1\o">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/03/Overview-of-GLM/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/03/test/"/>
 
 
 
 
 
-  <title>Overview of GLM | Thoughts</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>test | Thoughts</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/Overview-of-GLM/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stack0149">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Overview of GLM</h1>
+          <h1 class="post-title" itemprop="name headline">test</h1>
         
 
         <div class="post-meta">
@@ -272,7 +272,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-03T20:29:54+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-03T20:28:15+08:00">
                 2018-08-03
               </time>
             
@@ -291,8 +291,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/03/Overview-of-GLM/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/03/Overview-of-GLM/" itemprop="commentCount"></span>
+                <a href="/2018/08/03/test/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/03/test/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -335,9 +335,9 @@
 <li>$\eta$和$x$满足线性关系$\eta=w^Tx$</li>
 </ol>
 <p>简单线性回归，Logistic Regression 和Softmax问题都能通过方程变形变为GLM</p>
-<h2 id="简单线性回归（以下简称线性回归，高斯分布）"><a href="#简单线性回归（以下简称线性回归，高斯分布）" class="headerlink" title="简单线性回归（以下简称线性回归，高斯分布）"></a>简单线性回归（以下简称线性回归，高斯分布）</h2><p>我们在处理线性回归问题的时候，通常如下建模：$$y=w^Tx+\epsilon$$其中$\epsilon$为误差项，一般认为$\epsilon\sim N(0,\delta^2)$,因为$\delta$的取值不影响讨论，不妨认为$\delta=1$,因此$y\sim N(w^Tx,1)$,因此$$\begin{eqnarray} p(y|x) &amp;=&amp; {1\over \sqrt{2\pi}}exp{(y-\mu)^2\over 2} \\\  &amp;=&amp; {1\over \sqrt{2\pi}} exp(-{y^2\over2})exp(\mu y-{\mu^2\over2})\end{eqnarray}$$所以$$\eta=\mu=w^Tx$$$$T(y)=y$$$$a(\eta)={\mu^2/2}$$ $$b(y)={1\over \sqrt{2\pi}}exp(-{y^2\over2})$$</p>
-<h2 id="Logistic-Regression-伯努利分布"><a href="#Logistic-Regression-伯努利分布" class="headerlink" title="Logistic Regression(伯努利分布)"></a>Logistic Regression(伯努利分布)</h2><p>通过一定的变形，同样可以将Losgistic Regression 变形为指数分布，不详述。假设$p(y=1;\phi)=\phi$，结果如下<br>$$\eta=ln({\phi\over{1-\phi}})=&gt;\phi={1\over{1+e^{-\eta}}}$$ $$T(y)=y$$ $$a(\eta)=ln(1+e^\eta)$$ $$b(y)=1$$ 这个时候我们就发现，由于上述GLM的假设，自然得出$$P(y=1|x)={1\over{1+e^{-w^Tx}}}$$$$P(y=0|x)={e^{-w^Tx}\over{1+e^{-w^Tx}}}$$<br>这是相当奇妙的，我一开始接触到这个结论的时候很困惑，毕竟从伯努利分布得到Logistic Regression 这种形式还是有一定的跨度的，原来过程就藏在GLM模型里！</p>
-<h2 id="Softmax（多项分布）"><a href="#Softmax（多项分布）" class="headerlink" title="Softmax（多项分布）"></a>Softmax（多项分布）</h2><p>其实仔细思考，伯努利分布其实是多项分布的特化，Logistic Regression 和Softmax的形式也有相似之处。由多项分布变形成GLM并不复杂，但是要借助一个小trick，即one hot编码，为了节省我的工作量，我就不写啦。详情见<a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="noopener">26</a></p>
+<h2 id="1-简单线性回归（以下简称线性回归，高斯分布）"><a href="#1-简单线性回归（以下简称线性回归，高斯分布）" class="headerlink" title="1. 简单线性回归（以下简称线性回归，高斯分布）"></a>1. 简单线性回归（以下简称线性回归，高斯分布）</h2><p>我们在处理线性回归问题的时候，通常如下建模：$$y=w^Tx+\epsilon$$其中$\epsilon$为误差项，一般认为$\epsilon\sim N(0,\delta^2)$,因为$\delta$的取值不影响讨论，不妨认为$\delta=1$,因此$y\sim N(w^Tx,1)$,因此$$\begin{eqnarray} p(y|x) &amp;=&amp; {1\over \sqrt{2\pi}}exp{(y-\mu)^2\over 2} \\\  &amp;=&amp; {1\over \sqrt{2\pi}} exp(-{y^2\over2})exp(\mu y-{\mu^2\over2})\end{eqnarray}$$所以$$\eta=\mu=w^Tx$$$$T(y)=y$$$$a(\eta)={\mu^2/2}$$ $$b(y)={1\over \sqrt{2\pi}}exp(-{y^2\over2})$$</p>
+<h2 id="2-Logistic-Regression-伯努利分布"><a href="#2-Logistic-Regression-伯努利分布" class="headerlink" title="2. Logistic Regression(伯努利分布)"></a>2. Logistic Regression(伯努利分布)</h2><p>通过一定的变形，同样可以将Losgistic Regression 变形为指数分布，不详述。假设$p(y=1;\phi)=\phi$，结果如下<br>$$\eta=ln({\phi\over{1-\phi}})=&gt;\phi={1\over{1+e^{-\eta}}}$$ $$T(y)=y$$ $$a(\eta)=ln(1+e^\eta)$$ $$b(y)=1$$ 这个时候我们就发现，由于上述GLM的假设，自然得出$$P(y=1|x)={1\over{1+e^{-w^Tx}}}$$$$P(y=0|x)={e^{-w^Tx}\over{1+e^{-w^Tx}}}$$<br>这是相当奇妙的，我一开始接触到这个结论的时候很困惑，毕竟从伯努利分布得到Logistic Regression 这种形式还是有一定的跨度的，原来过程就藏在GLM模型里！</p>
+<h2 id="3-Softmax（多项分布）"><a href="#3-Softmax（多项分布）" class="headerlink" title="3. Softmax（多项分布）"></a>3. Softmax（多项分布）</h2><p>其实仔细思考，伯努利分布其实是多项分布的特化，Logistic Regression 和Softmax的形式也有相似之处。由多项分布变形成GLM并不复杂，但是要借助一个小trick，即one hot编码，为了节省我的工作量，我就不写啦。详情见<a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="noopener">26</a></p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ol>
 <li><a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="noopener">http://cs229.stanford.edu/notes/cs229-notes1.pdf</a></li>
 </ol>
@@ -360,8 +360,6 @@
           
             <a href="/tags/ML/" rel="tag"># ML</a>
           
-            <a href="/tags/GLM/" rel="tag"># GLM</a>
-          
         </div>
       
 
@@ -373,8 +371,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/31/Some-tips-on-GradientBoosting/" rel="next" title="Some tips on GradientBoosting">
-                <i class="fa fa-chevron-left"></i> Some tips on GradientBoosting
+              <a href="/2018/08/03/overview-of-glm/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -461,7 +459,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -474,7 +472,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -517,7 +515,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Note"><span class="nav-number">1.</span> <span class="nav-text">Note</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Preface"><span class="nav-number">2.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GLM及其特化"><span class="nav-number">3.</span> <span class="nav-text">GLM及其特化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单线性回归（以下简称线性回归，高斯分布）"><span class="nav-number">3.1.</span> <span class="nav-text">简单线性回归（以下简称线性回归，高斯分布）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic-Regression-伯努利分布"><span class="nav-number">3.2.</span> <span class="nav-text">Logistic Regression(伯努利分布)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Softmax（多项分布）"><span class="nav-number">3.3.</span> <span class="nav-text">Softmax（多项分布）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Note"><span class="nav-number">1.</span> <span class="nav-text">Note</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Preface"><span class="nav-number">2.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GLM及其特化"><span class="nav-number">3.</span> <span class="nav-text">GLM及其特化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简单线性回归（以下简称线性回归，高斯分布）"><span class="nav-number">3.1.</span> <span class="nav-text">1. 简单线性回归（以下简称线性回归，高斯分布）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Logistic-Regression-伯努利分布"><span class="nav-number">3.2.</span> <span class="nav-text">2. Logistic Regression(伯努利分布)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Softmax（多项分布）"><span class="nav-number">3.3.</span> <span class="nav-text">3. Softmax（多项分布）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
             
 
           </div>
