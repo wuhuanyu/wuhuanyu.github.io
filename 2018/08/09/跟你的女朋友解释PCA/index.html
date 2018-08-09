@@ -88,7 +88,7 @@
 <meta property="og:description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 PCA的作用？举一些例子？不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.stack.imgur.com/Q7HIP.gif">
-<meta property="og:updated_time" content="2018-08-09T08:05:40.662Z">
+<meta property="og:updated_time" content="2018-08-09T08:58:42.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跟你的女朋友解释PCA">
 <meta name="twitter:description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 PCA的作用？举一些例子？不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常">
@@ -351,7 +351,7 @@
 <p>现在我们对数据进行压缩，追求的目标就是信息损失越小越好，如果PCA不满足第一个标准，即重组后的属性方差很小，那么我们就丢掉了大部分信息，这个时候我们不可能对数据进行重建。当然PCA是有损压缩(如果熟悉PCA的推导就知道，最后的变换矩阵不可逆)，但是如果重组后属性方差大，损失的信息就小，越容易重建原数据(当然完全重建是不可能的）</p>
 <p>因此，这两个标准是内在统一的。<br><img src="https://i.stack.imgur.com/Q7HIP.gif"><br>例如上图，蓝点表示二维数据集，红点表示投影点也就是重组后的属性，紫红线表示原数据集方差最大的方向，大红线可以理解为误差，也就是损失的信息。中间的空心点表示均值。当然，你如果仔细看，会发现，重组后的属性方差越大，误差就越小，表明损失越小；重组后的属性方差越小，误差越大，表明损失的信息量太大了。你如果更仔细看会发现，这两个量的和是守恒的，23333</p>
 <h3 id="PCA为什么会涉及到特征值分解"><a href="#PCA为什么会涉及到特征值分解" class="headerlink" title="PCA为什么会涉及到特征值分解"></a>PCA为什么会涉及到特征值分解</h3><p>严格来讲，这涉及到公式推导的问题，在公式推导中有一个求最值的过程，这个时候涉及到特征值分解。当然也可以更加直观的理解，<a href="https://math.stackexchange.com/questions/243533/how-to-intuitively-understand-eigenvalue-and-eigenvector" target="_blank" rel="noopener">这里</a>有个链接告诉你特征值和特征向量究竟是什么。</p>
-<h3 id="PCA-V-S-FA"><a href="#PCA-V-S-FA" class="headerlink" title="PCA V.S. FA"></a>PCA V.S. FA</h3><p>This is a to-do paragraph. Take your time and have a cup of coffee!</p>
+<h3 id="PCA-V-S-FA"><a href="#PCA-V-S-FA" class="headerlink" title="PCA V.S. FA"></a>PCA V.S. FA</h3><p>我发现这个坑还是比较大的，我要仔细思考思考。</p>
 <hr>
 <p>听完了你的解释，你的女朋友若有所思的点点头，连连夸你聪明，觉得你是世界上最厉害的。你也觉得这次分享很有必要，不仅加深了自己对PCA的理解，学习到的各种知识更加融会贯通了。但是此刻你们都觉得很累，毕竟刚刚进行了一场大脑风暴。你搂着女朋友沉沉地睡去了。</p>
 <p>第二天醒来，你发现你并没有女朋友。</p>
