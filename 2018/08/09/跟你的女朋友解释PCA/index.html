@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ML,Statistic,PCA," />
 
 
 
@@ -79,13 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Thoughts">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 PCA的作用？举一些例子？不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常">
+<meta name="keywords" content="ML,Statistic,PCA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跟你的女朋友解释PCA">
+<meta property="og:url" content="http://yoursite.com/2018/08/09/跟你的女朋友解释PCA/index.html">
 <meta property="og:site_name" content="Thoughts">
+<meta property="og:description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 PCA的作用？举一些例子？不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.stack.imgur.com/Q7HIP.gif">
+<meta property="og:updated_time" content="2018-08-09T07:26:11.779Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thoughts">
+<meta name="twitter:title" content="跟你的女朋友解释PCA">
+<meta name="twitter:description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 PCA的作用？举一些例子？不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常">
+<meta name="twitter:image" content="https://i.stack.imgur.com/Q7HIP.gif">
 
 
 
@@ -115,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/09/跟你的女朋友解释PCA/"/>
 
 
 
 
 
-  <title>Thoughts</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>跟你的女朋友解释PCA | Thoughts</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,8 +147,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +240,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/09/跟你的女朋友解释PCA/" itemprop="url">跟你的女朋友解释PCA</a></h1>
+          <h1 class="post-title" itemprop="name headline">跟你的女朋友解释PCA</h1>
         
 
         <div class="post-meta">
@@ -328,19 +332,36 @@
       
 
       
-        
-          
-          Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。
-PCA的作用？举一些例子？不同于LDA(Linear Discri
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/09/跟你的女朋友解释PCA/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。</p>
+<h3 id="PCA的作用？举一些例子？"><a href="#PCA的作用？举一些例子？" class="headerlink" title="PCA的作用？举一些例子？"></a>PCA的作用？举一些例子？</h3><p>不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常属性与属性之间存在相关性，举个例子，在给跑车定价中，一辆跑车的属性有${百公里加速时间，最高时速，颜色，发动机….}$等等，显然百公里加速和最高时速存在一定的关系，也就是存在信息冗余，利用PCA可以降低数据冗余，同时很好的保留原有的数据信息。</p>
+<p>PCA的应用场景有：</p>
+<ol>
+<li>数据压缩</li>
+<li>在进行监督学习中，如果使用PCA对数据进行预处理，除了计算量下降外，有效减轻过拟合现象</li>
+<li>PCA是一种降噪算法，在PCA中，我们一般只关心对数据多样性贡献较大的属性，忽略方差小的属性。</li>
+</ol>
+<h3 id="PCA属于feature-elimination-还是feature-extraction"><a href="#PCA属于feature-elimination-还是feature-extraction" class="headerlink" title="PCA属于feature elimination 还是feature extraction"></a>PCA属于feature elimination 还是feature extraction</h3><p>feature elimination 是直接把属性砍掉，这样虽然降低了数据的维度，但是损失了信息,PCA属于feature extraction，假设原先的数据有$n$个属性，降维后$k$个属性，PCA是将$n$个属性重新线性组合得到$k$个属性，</p>
+<h3 id="PCA属性重组的标准是什么？"><a href="#PCA属性重组的标准是什么？" class="headerlink" title="PCA属性重组的标准是什么？"></a>PCA属性重组的标准是什么？</h3><p>PCA对属性重组有两个基本的标准：</p>
+<ol>
+<li>重组后的属性必须有较大的方差</li>
+<li>重组后的属性必须能够尽可能的恢复原属性</li>
+</ol>
+<p>笔者在查阅资料的时候，思考了这两个标准之间的联系。感谢信息论老师，感谢学习到的信息论知识。下面就从信息论的角度直观地解释一下这两个标准的含义。</p>
+<p>学过信息论就知道，作为衡量系统无序度的熵，如果一组数据方差小，就意味着信息熵小，极端的例子是，如果一组数据一模一样，那么信息熵就就是0，如果一组数据方差大，那么信息熵就大。</p>
+<p>现在我们对数据进行压缩，追求的目标就是信息损失越小越好，PCA不满足第一个标准，即重组后的属性方差很小，那么我们就丢掉了大部分信息，这个时候我们不可能对数据进行重建。当然PCA是有损压缩(如果熟悉PCA的推导就知道，最后的变换矩阵不可逆)，但是如果重组后属性方差大，损失的信息就小，越容易重建原数据(当然完全重建是不可能的）</p>
+<p>因此，这两个标准是内在统一的。<br><img src="https://i.stack.imgur.com/Q7HIP.gif"><br>例如上图，蓝点表示二维数据集，红点表示投影点也就是重组后的属性，紫红线表示原数据集方差最大的方向，大红线可以理解为误差，也就是损失的信息。中间的空心点表示均值。当然，你如果仔细看，会发现，重组后的属性方差越大，误差就越小，表明损失越小；重组后的属性方差越小，误差越大，表明损失的信息量太大了。你如果更仔细看会发现，这两个量的和是守恒的，23333</p>
+<h3 id="PCA为什么会涉及到特征值分解"><a href="#PCA为什么会涉及到特征值分解" class="headerlink" title="PCA为什么会涉及到特征值分解"></a>PCA为什么会涉及到特征值分解</h3><p>严格来讲，这涉及到公式推导的问题，在公式推导中有一个求最值的过程，这个时候涉及到特征值分解。当然也可以更加直观的理解，<a href="https://math.stackexchange.com/questions/243533/how-to-intuitively-understand-eigenvalue-and-eigenvector" target="_blank" rel="noopener">这里</a>有个链接告诉你特征值和特征向量究竟是什么。</p>
+<h3 id="PCA-V-S-FA"><a href="#PCA-V-S-FA" class="headerlink" title="PCA V.S. FA"></a>PCA V.S. FA</h3><p>This is a to-do paragraph. Take your time and have a cup of coffee!</p>
+<hr>
+<p>听完了你的解释，你的女朋友若有所思的点点头，连连夸你聪明，觉得你是世界上最厉害的。你也觉得这次分享很有必要，不仅加深了自己对PCA的理解，学习到的各种知识更加融会贯通了。但是此刻你们都觉得很累，毕竟刚刚进行了一场大脑风暴。你搂着女朋友沉沉地睡去了。</p>
+<p>第二天醒来，你发现你并没有女朋友。</p>
+<hr>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a href="https://math.stackexchange.com/questions/243533/how-to-intuitively-understand-eigenvalue-and-eigenvector" target="_blank" rel="noopener">https://math.stackexchange.com/questions/243533/how-to-intuitively-understand-eigenvalue-and-eigenvector</a></li>
+<li><a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues" target="_blank" rel="noopener">https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues</a></li>
+<li>cs229</li>
+</ol>
+
       
     </div>
     
@@ -355,289 +376,40 @@ PCA的作用？举一些例子？不同于LDA(Linear Discri
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/03/GLM-概览/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stack0149">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Thoughts">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/03/GLM-概览/" itemprop="url">GLM 概览</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-03T21:04:47+08:00">
-                2018-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/ML/" rel="tag"># ML</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/03/GLM-概览/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/03/GLM-概览/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/Statistic/" rel="tag"># Statistic</a>
           
-
+            <a href="/tags/PCA/" rel="tag"># PCA</a>
           
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          Note本文大部分总结自http://cs229.stanford.edu/notes/cs229-notes1.pdf
-Preface大家一开始接触回归问题的时候一定遇到过简单线性回归，Logistic Regression和Softmax问题，我在学习后两种回归问题的时候对方程的形式感觉很奇怪。
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/03/GLM-概览/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/03/GLM-概览/" rel="next" title="GLM 概览">
+                <i class="fa fa-chevron-left"></i> GLM 概览
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Some-tips-on-GradientBoosting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stack0149">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Thoughts">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/31/Some-tips-on-GradientBoosting/" itemprop="url">Some tips on GradientBoosting</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T13:05:48+08:00">
-                2018-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/31/Some-tips-on-GradientBoosting/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/31/Some-tips-on-GradientBoosting/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          This is a to-do post!参考
-https://machinelearningmastery.com/gentle-introduction-gradient-boosting-algorithm-machine-learning/
-Gradient Descent vs Resid
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/31/Some-tips-on-GradientBoosting/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -647,146 +419,11 @@ Gradient Descent vs Resid
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/29/Adaboost-算法分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stack0149">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Thoughts">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/29/Adaboost-算法分析/" itemprop="url">Adaboost 算法分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-29T15:46:39+08:00">
-                2018-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/29/Adaboost-算法分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/29/Adaboost-算法分析/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Preface网上有很多Adaboost的算法介绍，也有很多数学推导，但是就我而言，我在查询这些资料的时候是不满意的，一方面，中文博客的数学推导有一些错误，影响读者理解，另一方面，英文博客数学公式要么没有要么对初学者很不友好，导致看的云里雾里，所以想写下这篇博客，里面有一些自己的思考，锻炼一下自己的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/29/Adaboost-算法分析/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -794,6 +431,13 @@ Gradient Descent vs Resid
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -814,8 +458,17 @@ Gradient Descent vs Resid
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -876,6 +529,22 @@ Gradient Descent vs Resid
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA的作用？举一些例子？"><span class="nav-number">1.</span> <span class="nav-text">PCA的作用？举一些例子？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA属于feature-elimination-还是feature-extraction"><span class="nav-number">2.</span> <span class="nav-text">PCA属于feature elimination 还是feature extraction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA属性重组的标准是什么？"><span class="nav-number">3.</span> <span class="nav-text">PCA属性重组的标准是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA为什么会涉及到特征值分解"><span class="nav-number">4.</span> <span class="nav-text">PCA为什么会涉及到特征值分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PCA-V-S-FA"><span class="nav-number">5.</span> <span class="nav-text">PCA V.S. FA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1009,6 +678,10 @@ Gradient Descent vs Resid
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
