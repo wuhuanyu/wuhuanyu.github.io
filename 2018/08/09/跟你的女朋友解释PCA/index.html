@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 PCA的作用？举一些例子？不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常">
+<meta name="description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 为了表达的清晰，读者和他的女朋友打算统一符号:  原数据集$X\in R^{n*m}$，表示$m$个$n$维属性，第$j$个属性表示为$N_j$ 经过处理的后的数据集">
 <meta name="keywords" content="ML,Statistic,PCA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跟你的女朋友解释PCA">
 <meta property="og:url" content="http://yoursite.com/2018/08/09/跟你的女朋友解释PCA/index.html">
 <meta property="og:site_name" content="Thoughts">
-<meta property="og:description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 PCA的作用？举一些例子？不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常">
+<meta property="og:description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 为了表达的清晰，读者和他的女朋友打算统一符号:  原数据集$X\in R^{n*m}$，表示$m$个$n$维属性，第$j$个属性表示为$N_j$ 经过处理的后的数据集">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://i.stack.imgur.com/Q7HIP.gif">
-<meta property="og:updated_time" content="2018-08-09T12:10:34.338Z">
+<meta property="og:updated_time" content="2018-08-10T06:18:02.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跟你的女朋友解释PCA">
-<meta name="twitter:description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 PCA的作用？举一些例子？不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常">
+<meta name="twitter:description" content="Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。 为了表达的清晰，读者和他的女朋友打算统一符号:  原数据集$X\in R^{n*m}$，表示$m$个$n$维属性，第$j$个属性表示为$N_j$ 经过处理的后的数据集">
 <meta name="twitter:image" content="https://i.stack.imgur.com/Q7HIP.gif">
 
 
@@ -333,6 +333,11 @@
 
       
         <p>Note: 本文假定读者和他的女朋友已经了解PCA(Principal Component Analysis)和FA(Factor Analysis)的数学原理，但是读者的女朋友需要一些更直观的理解，因此本文不对数学推导做详细解释。</p>
+<p>为了表达的清晰，读者和他的女朋友打算统一符号:</p>
+<ol>
+<li>原数据集$X\in R^{n*m}$，表示$m$个$n$维属性，第$j$个属性表示为$N_j$</li>
+<li>经过处理的后的数据集$Y\in R^{k*m}$，第$j$个属性表示为$K_j$，这些属性也就是主成分</li>
+</ol>
 <h3 id="PCA的作用？举一些例子？"><a href="#PCA的作用？举一些例子？" class="headerlink" title="PCA的作用？举一些例子？"></a>PCA的作用？举一些例子？</h3><p>不同于LDA(Linear Discriminant Analysis,线性判别分析)PCA是一种无监督的数据降维技术。在原始数据集中，通常属性与属性之间存在相关性，举个例子，在给跑车定价中，一辆跑车的属性有${百公里加速时间，最高时速，颜色，发动机….}$等等，显然百公里加速和最高时速存在一定的关系，也就是存在信息冗余，利用PCA可以降低数据冗余，同时很好的保留原有的数据信息。</p>
 <p>PCA的应用场景有：</p>
 <ol>
@@ -340,7 +345,7 @@
 <li>在进行监督学习中，如果使用PCA对数据进行预处理，除了计算量下降外，有效减轻过拟合现象</li>
 <li>PCA是一种降噪算法，在PCA中，我们一般只关心对数据多样性贡献较大的属性，忽略方差小的属性。</li>
 </ol>
-<h3 id="PCA属于feature-elimination-还是feature-extraction"><a href="#PCA属于feature-elimination-还是feature-extraction" class="headerlink" title="PCA属于feature elimination 还是feature extraction"></a>PCA属于feature elimination 还是feature extraction</h3><p>feature elimination 是直接把属性砍掉，这样虽然降低了数据的维度，但是损失了信息,PCA属于feature extraction，假设原先的数据有$n$个属性，降维后$k$个属性，PCA是将$n$个属性重新线性组合得到$k$个属性，</p>
+<h3 id="PCA属于feature-elimination-还是feature-extraction"><a href="#PCA属于feature-elimination-还是feature-extraction" class="headerlink" title="PCA属于feature elimination 还是feature extraction"></a>PCA属于feature elimination 还是feature extraction</h3><p>feature elimination 是直接把属性砍掉，这样虽然降低了数据的维度，但是损失了大量的信息,PCA属于feature extraction，PCA是将$n$个属性重新线性组合得到$k$个属性，</p>
 <h3 id="PCA属性重组的标准是什么？"><a href="#PCA属性重组的标准是什么？" class="headerlink" title="PCA属性重组的标准是什么？"></a>PCA属性重组的标准是什么？</h3><p>PCA对属性重组有两个基本的标准：</p>
 <ol>
 <li>重组后的属性必须有较大的方差</li>
@@ -350,12 +355,31 @@
 <p>学过信息论就知道，作为衡量系统无序度的熵，如果一组数据方差小，就意味着信息熵小，极端的例子是，如果一组数据一模一样，那么信息熵就就是0，如果一组数据方差大，那么信息熵就大。</p>
 <p>现在我们对数据进行压缩，追求的目标就是信息损失越小越好，如果PCA不满足第一个标准，即重组后的属性方差很小，那么我们就丢掉了大部分信息，这个时候我们不可能对数据进行重建。当然PCA是有损压缩(如果熟悉PCA的推导就知道，最后的变换矩阵不可逆)，但是如果重组后属性方差大，损失的信息就小，越容易重建原数据(当然完全重建是不可能的）</p>
 <p>因此，这两个标准是内在统一的。<br><img src="https://i.stack.imgur.com/Q7HIP.gif"><br>例如上图，蓝点表示二维数据集，红点表示投影点也就是重组后的属性，紫红线表示原数据集方差最大的方向，大红线可以理解为误差，也就是损失的信息。中间的空心点表示均值。当然，你如果仔细看，会发现，重组后的属性方差越大，误差就越小，表明损失越小；重组后的属性方差越小，误差越大，表明损失的信息量太大了。你如果更仔细看会发现，这两个量的和是守恒的，23333</p>
-<h3 id="数据集里的信息熵"><a href="#数据集里的信息熵" class="headerlink" title="数据集里的信息熵"></a>数据集里的信息熵</h3><p>如果你不了解什么是信息熵，你不妨看看<a href="https://www.zhihu.com/question/22178202" target="_blank" rel="noopener">这里</a>。给定一个$D\in R^{n*m}$（$m$个$n$维向量）,$D$的无序度就已经确定了，不以人的定义为转移。这种无序度可能是显式的，可能就表现在那$n$维中；也有可能存在某些隐藏变量，这些隐藏变量的无序度通过$n$维属性表示出来。我们对数据进行处理，追求的目标就是减小信息熵的损耗，同时降低维度。</p>
-<p>PCA在做什么呢，如果我们通过PCA得到了数据集$D\in R^{k*m}$,如果在这$k$个新属性中的某个属性$k_i$有最大的方差，我们就认为$k_i$综合了大量的原数据集的信息熵，如此，我们能够同时达到减小信息熵消耗，降低维度的两个目的。</p>
+<h3 id="数据集里的信息熵"><a href="#数据集里的信息熵" class="headerlink" title="数据集里的信息熵"></a>数据集里的信息熵</h3><p>首先要理解一点，一组数据最重要的是它的信息熵，也就是无序度，至于无序度以什么方式表现出来并不重要。</p>
+<p>如果你不了解什么是信息熵，你不妨看看<a href="https://www.zhihu.com/question/22178202" target="_blank" rel="noopener">这里</a>。给定一个$X\in R^{n*m}$（$m$个$n$维向量）,$X$的无序度就已经确定了，不以人的定义为转移。这种无序度可能是显式的，可能就表现在那$n$维中；也有可能存在某些隐藏变量，这些隐藏变量的无序度通过$n$维属性表示出来。我们对数据进行处理，追求的目标就是减小信息熵的损耗，同时降低维度。</p>
+<p>PCA在做什么呢，如果我们通过PCA得到了数据集$Y\in R^{k*m}$,如果在这$k$个新属性中的某个属性$K_j$有最大的方差，我们就认为$K_j$继承了大量的原数据集的信息熵，如此，我们能够同时达到减小信息熵消耗，降低维度的两个目的。</p>
 <p>利用信息熵来理解数据降维技术能够给我们直观上的理解。再次感谢信息论，感谢香农。</p>
 <p>使用信息熵及其相关理论的机器学习算法很多，比如在构建决策树的时候，我们用信息增益来决定树枝的分叉，用信息熵来衡量从父节点分叉后的平均纯净度；再比如如果一个网络输出的是概率，那么我们就可以使用交叉熵来构建损失函数。</p>
 <h3 id="PCA为什么会涉及到特征值分解"><a href="#PCA为什么会涉及到特征值分解" class="headerlink" title="PCA为什么会涉及到特征值分解"></a>PCA为什么会涉及到特征值分解</h3><p>严格来讲，这涉及到公式推导的问题，在公式推导中有一个求最值的过程，这个时候涉及到特征值分解。当然也可以更加直观的理解，<a href="https://math.stackexchange.com/questions/243533/how-to-intuitively-understand-eigenvalue-and-eigenvector" target="_blank" rel="noopener">这里</a>有个链接告诉你特征值和特征向量究竟是什么。</p>
-<h3 id="PCA-V-S-FA"><a href="#PCA-V-S-FA" class="headerlink" title="PCA V.S. FA"></a>PCA V.S. FA</h3><p>我发现这个坑还是比较大的，我要仔细思考思考。</p>
+<h3 id="PCA-V-S-FA"><a href="#PCA-V-S-FA" class="headerlink" title="PCA V.S. FA"></a>PCA V.S. FA</h3><p><a href="http://blog.sina.com.cn/s/blog_4b1b183d0100gz1b.html" target="_blank" rel="noopener">这里</a>的这篇文章写的很全面，我就不狗尾续貂了。</p>
+<p>通过主成分分析所得来的新属性是原始属性的线性组合，每个主成分都是由原有$n$个属性线组合得到，在诸多主成分$K$中，$k_j$在总方差中占的比重最大，说明它综合原有变量的能力最强，其余主成分在总方差中占的比重依次递减，说明越往后的主成分综合原信息的能力越弱。以后的分析可以用前面几个方差最大的主成分来进行，一般情况下，要求前几个主成分所包含的信息不少于原始信息的85％ ，这样既减少了变量的数目，又能够用较少的主成分反映原有变量的绝大部分信息。如利用主成分来消除多元回归方程的多重共线性，利用主成分来筛选多元线性回归方程中的变量等。</p>
+<p>通过因子分析得来的新变量是对每一个原始变量进行内部剖析。打比喻来说，原始变量就如成千上万的糕点，每一种糕点的原料都有面粉、油、糖及相应的不同原料，这其中，面粉、油、糖是所有糕点的共同材料，这正好象是因子分析中的新变量即因子变量。正确选择因子变量后，如果想考虑成千上万糕点的物价变动， 只需重点考虑面粉、油、糖等公共因子的物价变动即可。所以因子分析不是对原始变量的重新组合，而是对原始变量进行分解，分解为公共因子与特殊因子两部分。即因子分析就是要利用少数几个公共因子去解释较多个要观测变量中存在的复杂关系，它把原始变量分解为两部分因素，一部分是由所有变量共同具有的少数几个公共因子构成的，另一部分是每个原始变量独自具有的因素，即特殊因子。</p>
+<p>具体而言：</p>
+<ol>
+<li>因子分析中是把属性表示成各因子的线性组合，而主成分分析中则是把主成分表示成各个属性的线性组合。 在主成分分析中,最终确定的新变量是原始变量的线性组合,如原始变量为${x_1,x_2,x_3…}$ ,经过坐标变换,将原有的${n}$个相关变量${x_i}$ 作线性变换,每个主成分都是由原有${n}$个变量线性组合得到。在诸多主成分${K_i}$ 中,$K_1$ 在方差中占的比重最大,说明它综合原有变量的能力最强,越往后主成分在方差中的比重也小,综合原信息的能力越弱。</li>
+<li>主成分分析的重点在于解释个变量的总方差，而因子分析则把重点放在解释各变量之 间的协方差</li>
+<li>主成分分析中不需要有假设(assumptions),因子分析则需要一些假设。因子分析的假设包括：各个共同因子之间不相关，特殊因子（specific factor）之间也不相关，共同因子和特殊因子之间也不相关。</li>
+<li>主成分分析中，当给定的协方差矩阵或者相关矩阵的特征值是唯一的时候，的主成分 一般是独特的；而因子分析中因子不是独特的，可以旋转得到不到的因子。</li>
+<li>在因子分析中，因子个数需要分析者指定（spss根据一定的条件自动设定，只要是特 征值大于1的因子进入分析），而指 定的因子数量不同而结果不同。在主成分分析中，成分的数量是一定的，一般有几个变量就有几个主成分。</li>
+</ol>
+<p>总的来说，主成分分析主要是作为一种探索性的技术，在分析者进行多元数据分析之前 ，用主成分分析来分析数据，让自己对数据有一个大致的了解是非常重要的。主成分分析一般很少单独使用：</p>
+<ul>
+<li>了解数据(screening the data)</li>
+<li>和cluster analysis一 起使用</li>
+<li>和判别分析一起使用，比如当变量很多，个案数不多，直接使用判别分析可能无解，这时候可以使用主成份发对变量简化。（reduce dimensionality）</li>
+<li>在多元回归中，主成分分析可以帮助判断是否存在共线性（条件指数），还可以用来处理共线性。</li>
+</ul>
+<p>在算法上，主成分分析和因子分析很类似，不过，在因子分析中所采用的协方差矩阵的对角元素不再是变量的方差，而是和变量对应的共同度（变量方差中被各因子所解释的部分）。</p>
 <hr>
 <p>听完了你的解释，你的女朋友若有所思的点点头，连连夸你聪明，觉得你是世界上最厉害的。你也觉得这次分享很有必要，不仅加深了自己对PCA的理解，学习到的各种知识更加融会贯通了。但是此刻你们都觉得很累，毕竟刚刚进行了一场大脑风暴。你搂着女朋友沉沉地睡去了。</p>
 <p>第二天醒来，你发现你并没有女朋友。</p>
