@@ -3,6 +3,25 @@
   
     
     <entry>
+      <title>word2vec tips</title>
+      <link href="/2018/08/20/word2vec-tips/"/>
+      <url>/2018/08/20/word2vec-tips/</url>
+      <content type="html"><![CDATA[<p><strong>Note:</strong> 本文整理了在学习NLP模型时候的笔记，读者可作为笔记或者大纲使用，本文假设读者学习了一定的NLP知识。网上的资料很多，本人不再狗尾续貂，相关网站可能需要科学上网，你懂的。网上有人做出了<a href="http://mccormickml.com/2016/04/27/word2vec-resources/" target="_blank" rel="noopener">类似的</a>compilation</p><h3 id="Skip-gram"><a href="#Skip-gram" class="headerlink" title="Skip-gram"></a>Skip-gram</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>建议仔细阅读，其中有不少细节值得注意</p><ol><li><a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/" target="_blank" rel="noopener">http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/</a></li><li><a href="https://youtu.be/ERibwqs9p38" target="_blank" rel="noopener">https://youtu.be/ERibwqs9p38</a></li></ol><h4 id="Tricks-and-enhancements"><a href="#Tricks-and-enhancements" class="headerlink" title="Tricks and enhancements"></a>Tricks and enhancements</h4><h6 id="Negative-sampling"><a href="#Negative-sampling" class="headerlink" title="Negative sampling"></a>Negative sampling</h6><ol><li><a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/" target="_blank" rel="noopener">http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/</a></li></ol><h3 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h3><p>To be continued.</p>]]></content>
+      
+      
+        <tags>
+            
+            <tag> NLP </tag>
+            
+            <tag> ML </tag>
+            
+            <tag> Notes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>跟你的女朋友解释PCA</title>
       <link href="/2018/08/09/%E8%B7%9F%E4%BD%A0%E7%9A%84%E5%A5%B3%E6%9C%8B%E5%8F%8B%E8%A7%A3%E9%87%8APCA/"/>
       <url>/2018/08/09/%E8%B7%9F%E4%BD%A0%E7%9A%84%E5%A5%B3%E6%9C%8B%E5%8F%8B%E8%A7%A3%E9%87%8APCA/</url>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="NLP,ML,Notes," />
 
 
 
@@ -79,19 +79,18 @@
 
 
 
-<meta name="description" content="好奇驱动型学习者 时而愧疚驱动型学习者 自由的散人 时常感到无所适从 想要知道的更多 世界于我而言充满未知 看过一部电影《无问西东》 理想主义，无问西东">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About Me">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="Note: 本文整理了在学习NLP模型时候的笔记，读者可作为笔记或者大纲使用，本文假设读者学习了一定的NLP知识。网上的资料很多，本人不再狗尾续貂，相关网站可能需要科学上网，你懂的。网上有人做出了类似的compilation Skip-gram基本概念建议仔细阅读，其中有不少细节值得注意  http://mccormickml.com/2016/04/19/word2vec-tutorial-th">
+<meta name="keywords" content="NLP,ML,Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="word2vec tips">
+<meta property="og:url" content="http://yoursite.com/2018/08/20/word2vec-tips/index.html">
 <meta property="og:site_name" content="Thoughts">
-<meta property="og:description" content="好奇驱动型学习者 时而愧疚驱动型学习者 自由的散人 时常感到无所适从 想要知道的更多 世界于我而言充满未知 看过一部电影《无问西东》 理想主义，无问西东">
+<meta property="og:description" content="Note: 本文整理了在学习NLP模型时候的笔记，读者可作为笔记或者大纲使用，本文假设读者学习了一定的NLP知识。网上的资料很多，本人不再狗尾续貂，相关网站可能需要科学上网，你懂的。网上有人做出了类似的compilation Skip-gram基本概念建议仔细阅读，其中有不少细节值得注意  http://mccormickml.com/2016/04/19/word2vec-tutorial-th">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/img/about.jpg">
-<meta property="og:updated_time" content="2018-08-09T12:16:51.687Z">
+<meta property="og:updated_time" content="2018-08-20T02:53:49.213Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About Me">
-<meta name="twitter:description" content="好奇驱动型学习者 时而愧疚驱动型学习者 自由的散人 时常感到无所适从 想要知道的更多 世界于我而言充满未知 看过一部电影《无问西东》 理想主义，无问西东">
-<meta name="twitter:image" content="http://yoursite.com/img/about.jpg">
+<meta name="twitter:title" content="word2vec tips">
+<meta name="twitter:description" content="Note: 本文整理了在学习NLP模型时候的笔记，读者可作为笔记或者大纲使用，本文假设读者学习了一定的NLP知识。网上的资料很多，本人不再狗尾续貂，相关网站可能需要科学上网，你懂的。网上有人做出了类似的compilation Skip-gram基本概念建议仔细阅读，其中有不少细节值得注意  http://mccormickml.com/2016/04/19/word2vec-tutorial-th">
 
 
 
@@ -121,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/20/word2vec-tips/"/>
 
 
 
 
 
-  <title>About Me | Thoughts</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>word2vec tips | Thoughts</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -242,42 +241,167 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/20/word2vec-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stack0149">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thoughts">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">About Me</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p><br></p>
-<h1 id="好奇驱动型学习者"><a href="#好奇驱动型学习者" class="headerlink" title="好奇驱动型学习者"></a>好奇驱动型学习者</h1><p><br></p>
-<h1 id="时而愧疚驱动型学习者"><a href="#时而愧疚驱动型学习者" class="headerlink" title="时而愧疚驱动型学习者"></a>时而愧疚驱动型学习者</h1><p><br></p>
-<h1 id="自由的散人"><a href="#自由的散人" class="headerlink" title="自由的散人"></a>自由的散人</h1><p><br></p>
-<h1 id="时常感到无所适从"><a href="#时常感到无所适从" class="headerlink" title="时常感到无所适从"></a>时常感到无所适从</h1><p><br></p>
-<h1 id="想要知道的更多"><a href="#想要知道的更多" class="headerlink" title="想要知道的更多"></a>想要知道的更多</h1><p><br></p>
-<h1 id="世界于我而言充满未知"><a href="#世界于我而言充满未知" class="headerlink" title="世界于我而言充满未知"></a>世界于我而言充满未知</h1><p><br></p>
-<h1 id="看过一部电影《无问西东》"><a href="#看过一部电影《无问西东》" class="headerlink" title="看过一部电影《无问西东》"></a>看过一部电影《无问西东》</h1><p><br></p>
-<h1 id="理想主义，无问西东"><a href="#理想主义，无问西东" class="headerlink" title="理想主义，无问西东"></a>理想主义，无问西东</h1><p><br><br><img src="/img/about.jpg" alt=""></p>
-
+          <h1 class="post-title" itemprop="name headline">word2vec tips</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-20T10:29:24+08:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/20/word2vec-tips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/20/word2vec-tips/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p><strong>Note:</strong> 本文整理了在学习NLP模型时候的笔记，读者可作为笔记或者大纲使用，本文假设读者学习了一定的NLP知识。网上的资料很多，本人不再狗尾续貂，相关网站可能需要科学上网，你懂的。网上有人做出了<a href="http://mccormickml.com/2016/04/27/word2vec-resources/" target="_blank" rel="noopener">类似的</a>compilation</p>
+<h3 id="Skip-gram"><a href="#Skip-gram" class="headerlink" title="Skip-gram"></a>Skip-gram</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>建议仔细阅读，其中有不少细节值得注意</p>
+<ol>
+<li><a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/" target="_blank" rel="noopener">http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/</a></li>
+<li><a href="https://youtu.be/ERibwqs9p38" target="_blank" rel="noopener">https://youtu.be/ERibwqs9p38</a></li>
+</ol>
+<h4 id="Tricks-and-enhancements"><a href="#Tricks-and-enhancements" class="headerlink" title="Tricks and enhancements"></a>Tricks and enhancements</h4><h6 id="Negative-sampling"><a href="#Negative-sampling" class="headerlink" title="Negative sampling"></a>Negative sampling</h6><ol>
+<li><a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/" target="_blank" rel="noopener">http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/</a></li>
+</ol>
+<h3 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h3><p>To be continued.</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+            <a href="/tags/ML/" rel="tag"># ML</a>
+          
+            <a href="/tags/Notes/" rel="tag"># Notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/09/跟你的女朋友解释PCA/" rel="next" title="跟你的女朋友解释PCA">
+                <i class="fa fa-chevron-left"></i> 跟你的女朋友解释PCA
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -394,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#好奇驱动型学习者"><span class="nav-number">1.</span> <span class="nav-text">好奇驱动型学习者</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时而愧疚驱动型学习者"><span class="nav-number">2.</span> <span class="nav-text">时而愧疚驱动型学习者</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自由的散人"><span class="nav-number">3.</span> <span class="nav-text">自由的散人</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时常感到无所适从"><span class="nav-number">4.</span> <span class="nav-text">时常感到无所适从</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#想要知道的更多"><span class="nav-number">5.</span> <span class="nav-text">想要知道的更多</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#世界于我而言充满未知"><span class="nav-number">6.</span> <span class="nav-text">世界于我而言充满未知</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#看过一部电影《无问西东》"><span class="nav-number">7.</span> <span class="nav-text">看过一部电影《无问西东》</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#理想主义，无问西东"><span class="nav-number">8.</span> <span class="nav-text">理想主义，无问西东</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Skip-gram"><span class="nav-number">1.</span> <span class="nav-text">Skip-gram</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tricks-and-enhancements"><span class="nav-number">1.2.</span> <span class="nav-text">Tricks and enhancements</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Negative-sampling"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Negative sampling</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CBOW"><span class="nav-number">2.</span> <span class="nav-text">CBOW</span></a></li></ol></div>
             
 
           </div>
@@ -596,7 +720,46 @@
         guest_info:guest,
         pageSize:'10' || 10,
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -614,25 +777,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
   
 
 
