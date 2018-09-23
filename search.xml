@@ -3,19 +3,34 @@
   
     
     <entry>
-      <title>word2vec tips</title>
-      <link href="/2018/08/20/word2vec-tips/"/>
-      <url>/2018/08/20/word2vec-tips/</url>
-      <content type="html"><![CDATA[<p><strong>Note:</strong> 本文整理了在学习NLP模型时候的笔记，读者可作为笔记或者大纲使用，本文假设读者学习了一定的NLP知识。网上的资料很多，本人不再狗尾续貂，相关网站可能需要科学上网，你懂的。网上有人做出了<a href="http://mccormickml.com/2016/04/27/word2vec-resources/" target="_blank" rel="noopener">类似的</a>compilation</p><h3 id="Skip-gram"><a href="#Skip-gram" class="headerlink" title="Skip-gram"></a>Skip-gram</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>建议仔细阅读，其中有不少细节值得注意</p><ol><li><a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/" target="_blank" rel="noopener">http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/</a></li><li><a href="https://youtu.be/ERibwqs9p38" target="_blank" rel="noopener">https://youtu.be/ERibwqs9p38</a></li></ol><h4 id="Tricks-and-enhancements"><a href="#Tricks-and-enhancements" class="headerlink" title="Tricks and enhancements"></a>Tricks and enhancements</h4><h6 id="Negative-sampling"><a href="#Negative-sampling" class="headerlink" title="Negative sampling"></a>Negative sampling</h6><ol><li><a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/" target="_blank" rel="noopener">http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/</a></li></ol><h3 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h3><p>To be continued.</p>]]></content>
+      <title>P-NP-NPC-NPH</title>
+      <link href="/2018/09/23/P-NP-NPC-NPH/"/>
+      <url>/2018/09/23/P-NP-NPC-NPH/</url>
+      <content type="html"><![CDATA[<p>开学了，很久没有更新了，我发现值得更新的知识并不多，因为很多知识网上已经有了很好的资源，就不狗尾续貂了。对于我来说，由于水平的限制，很多自己的想法是别人已经提出来的，并不算有什么新意。</p><p>最近遇到了一个新的知识点：P，NP，NPC，NPH问题。做个笔记，防止忘记。</p><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>P：能找到一个多项式时间复杂度算法的问题</p><p>NP：NP问题不是非P问题。NP问题是指可以在多项式时间内验证一个解的问题，或者另一个定义死可以在多项式时间内猜出一个解的问题。</p><p>NPC：首先必须是一个NP问题，其次，所有的NP问题都可以约化到它。证明一个问题是NPC问题也很简单，首先证明是一个NP问题，在证明一个已知的NPC问题能够约化到它。</p><p>NPH：满足NPC问题的第二条，但是第一条不满足</p><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ol><li><a href="http://www.matrix67.com/blog/archives/105" target="_blank" rel="noopener">http://www.matrix67.com/blog/archives/105</a></li></ol>]]></content>
       
       
         <tags>
             
-            <tag> NLP </tag>
+            <tag> Notes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>word2vec tips</title>
+      <link href="/2018/08/20/word2vec-tips/"/>
+      <url>/2018/08/20/word2vec-tips/</url>
+      <content type="html"><![CDATA[<p><strong>Note:</strong> 本文整理了在学习NLP模型时候的笔记，读者可作为笔记或者大纲使用，本文假设读者学习了一定的NLP知识。网上的资料很多，本人不再狗尾续貂，相关网站可能需要科学上网，你懂的。网上有人做出了<a href="http://mccormickml.com/2016/04/27/word2vec-resources/" target="_blank" rel="noopener">类似的</a>compilation</p><h3 id="Skip-gram"><a href="#Skip-gram" class="headerlink" title="Skip-gram"></a>Skip-gram</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>建议仔细阅读，其中有不少细节值得注意</p><ol><li><a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/" target="_blank" rel="noopener">http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/</a></li><li><a href="https://youtu.be/ERibwqs9p38" target="_blank" rel="noopener">https://youtu.be/ERibwqs9p38</a></li><li><a href="https://iksinc.online/tag/continuous-bag-of-words-cbow/" target="_blank" rel="noopener">https://iksinc.online/tag/continuous-bag-of-words-cbow/</a></li></ol><h4 id="Tricks-and-enhancements"><a href="#Tricks-and-enhancements" class="headerlink" title="Tricks and enhancements"></a>Tricks and enhancements</h4><h6 id="Negative-sampling"><a href="#Negative-sampling" class="headerlink" title="Negative sampling"></a>Negative sampling</h6><ol><li><a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/" target="_blank" rel="noopener">http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/</a></li></ol><h3 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h3><h4 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h4><ol><li><a href="https://iksinc.online/tag/continuous-bag-of-words-cbow/" target="_blank" rel="noopener">https://iksinc.online/tag/continuous-bag-of-words-cbow/</a></li></ol><p>To be continued.</p>]]></content>
+      
+      
+        <tags>
             
             <tag> ML </tag>
             
             <tag> Notes </tag>
+            
+            <tag> NLP </tag>
             
         </tags>
       
